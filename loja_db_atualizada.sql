@@ -129,3 +129,15 @@ SELECT *
 FROM tb_produtos as tb_p
 LEFT JOIN tb_itens_vendidos ON tb_p.id_produto = tb_itens_vendidos.id_produto WHERE tb_itens_vendidos.id_produto IS NULL
 GO
+
+CREATE TRIGGER trigger_uc_client
+ON tb_clientes
+FOR INSERT, UPDATE
+AS
+BEGIN
+	SELECT * FROM tb_clientes
+END
+
+UPDATE tb_clientes SET email = NULL WHERE id_cliente <> 0
+GO
+
